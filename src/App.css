@@ -2,32 +2,153 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+html, body {
+  height: 100%;
+  background: #013;
+}
+
+h1, h2, h3, h4, p, label {
+  color: #fff;
+}
+
+header > a {
+  text-decoration: none;
+  font-size: 60px;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-image: url("https://i.ytimg.com/vi/WC9rHRP-mnQ/maxresdefault.jpg");
+  min-height: 100px;
   display: flex;
-  flex-direction: column;
+  padding-left: 20px;
+  padding-right: 20px;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.App-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.App-LetterBrowse {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.App-RandomImage {
+  width: 90%;
+  display: block;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.white {
+  color: #fff;
+}
+
+.red {
+  color: #ff0000;
+}
+
+
+.search-artist {
+  font-size: 20px;
+  color: #fff;
+}
+
+.search-song {
+  color: #fff;
+  font-size: 16px;
+  margin: 0px;
+  margin-block-start: 2px;
+  margin-block-end: 2px;
+}
+
+.song-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  align-items: center;
+}
+
+.song-container > h4 {
+  color: #ffff00;
+  margin-bottom: 0px;
+}
+
+.myButton {
+  box-sizing: content-box;
+  background-color: yellow;
+  flex: 1 0 21%;
+  margin: 2px;
+  height: 32px;
+  min-width: 20px;
+  border-radius: 8px;
+  color: red;
+  text-shadow: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+.social {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fa {
+  padding: 20px;
+  background: transparent;
+  color: white;
+  font-size: 30px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.export-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px !important;
+  text-decoration: none;
+  height: 2rem;
+  box-sizing: content-box;
+  background-color: yellow;
+  flex: 1 0 21%;
+  margin: 50px auto;
+  height: 32px;
+  width: 250px;
+  min-width: 20px;
+  border-radius: 8px;
+  color: red;
+  text-shadow: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.export-button {
+  text-decoration: none;
+  color: red;
+  text-shadow: #ffffff;
 }
