@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { CATEGORY } from '../consts';
 
 class Search extends Component {
 
@@ -9,7 +10,10 @@ class Search extends Component {
           {values.map(song=>(
             <p key={`${key}-${song}`} className="search-song">{song}</p>))
           }
-          <p key={key}><span className="white">...................................</span><span className="red">.........</span></p>
+          <p key={key}>
+            <span className="white">...................................</span>
+            <span className="red">.........</span>
+          </p>
         </div>
         )
     }
@@ -22,10 +26,10 @@ class Search extends Component {
         if (searchTerm === '0-9') {
             return this.searchByStartingNumber()
         }
-        if (searchTerm === 'Disney') {
+        if (searchTerm === CATEGORY.disney) {
             return this.searchDisney()
         }
-        if (searchTerm === 'Misc') {
+        if (searchTerm === CATEGORY.misc) {
             return this.searchMisc()
         }
     }
@@ -36,7 +40,7 @@ class Search extends Component {
         Object.entries(searchResults).forEach(entry => {
             const key = entry[0]
             const values = entry[1]
-            if (key.charAt(0) <='9' && key.charAt(0) >='0') {
+            if (key.charAt(0) <='9' && key.charAt(0) >= '0') {
                 items.push(
                     this.artistSongElement(key, values)
                 )
@@ -77,7 +81,7 @@ class Search extends Component {
         Object.entries(searchResults).forEach(entry => {
             const key = entry[0]
             const values = entry[1]
-            if (key.charAt(0) === searchTerm && key !== 'Disney') {
+            if (key.charAt(0) === searchTerm && key !== CATEGORY.disney) {
                 items.push(
                     this.artistSongElement(key, values)
                 )

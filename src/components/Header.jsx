@@ -30,9 +30,6 @@ const headerStyle = {
   backgroundImage: "url(https://i.ytimg.com/vi/WC9rHRP-mnQ/maxresdefault.jpg)"
 }
 
-const appRoot = document.getElementById('app-root');
-const modalRoot = document.getElementById('modal-root');
-
 class Header extends React.Component {
   constructor(props) {
     super(props);
