@@ -7,6 +7,7 @@ import Admin from './components/Admin';
 import Player from './components/Player';
 import Footer from './components/Footer';
 import firebase from './firebase';
+import {ToastsContainer, ToastsStore, ToastsContainerPosition } from 'react-toasts';
 
 
 class App extends Component {
@@ -19,11 +20,14 @@ class App extends Component {
 
   componentDidMount() {
     this.ref = firebase.firestore().collection('Karaoke');
-    this.ref.onSnapshot(this.onCollectionUpdate);
+    this.ref.onSnapshot(this.onCollectionUpdate, this.showError);
+  }
+
+  showError() {
+    ToastsStore.error("Database connection error")
   }
 
   onCollectionUpdate = (querySnapshot) => {
-    console.log(this.props.theme);
     if (querySnapshot != null) { 
       const regularData = querySnapshot.docs.find((doc => doc.id === 'Regular')).data()
       const disneyData = querySnapshot.docs.find((doc => doc.id === 'Disney')).data()
@@ -42,6 +46,7 @@ class App extends Component {
     return (
       <div>
         <Header />
+        <ToastsContainer store={ToastsStore} position={ToastsContainerPosition.TOP_RIGHT}/>
         <Switch>
           <Route exact path='/' component={() => <Main 
             searchTerm={null}
