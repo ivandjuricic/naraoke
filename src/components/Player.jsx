@@ -1,5 +1,6 @@
 import React from 'react';
 import MediaPlayer from './MediaPlayer';
+import ReactPlayer from 'react-player'
 
 class Player extends React.PureComponent {
   constructor(props) {
@@ -7,53 +8,57 @@ class Player extends React.PureComponent {
     
     this.state = {
       counter: 0,
+      songList: [{aritst: "Abba", song:"Dancing Queen", url: null}, {"Warrant": "Cherry Pie"}],
+      url: null,
       showWindowPortal: false,
+      selectedSong: null,
     };
     
-    this.toggleWindowPortal = this.toggleWindowPortal.bind(this);
-    this.closeWindowPortal = this.closeWindowPortal.bind(this);
+    this.playSong = this.playSong.bind(this);
+    this.closeMediaPlayer = this.closeMediaPlayer.bind(this);
   }
 
   componentDidMount() {
     window.addEventListener('beforeunload', () => {
-      this.closeWindowPortal();
+      this.closeMediaPlayer();
     });
-    
-    window.setInterval(() => {
-      this.setState(state => ({
-        counter: state.counter + 1,
-      }));
-    }, 1000);
+  }
+
+  generateFileUrl = (e) => {
+    e.preventDefault()
+    const videoUrl = e.target.value;
+    const url = URL.generateFileUrl(videoUrl)
+    this.setState({url})
   }
   
-  toggleWindowPortal() {
+  playSong() {
     this.setState(state => ({
       ...state,
       showWindowPortal: !state.showWindowPortal,
     }));
   }
   
-  closeWindowPortal() {
+  closeMediaPlayer() {
     this.setState({ showWindowPortal: false })
   }
   
   render() {
+    const artist = Object.keys(this.state.songList[0])[0]
+    const song  = Object.values(this.state.songList[0])[0]
+    console.log(this.state.url)
     return (
       <div>
-        <h1>Counter: {this.state.counter}</h1>
-        
-        <button onClick={this.toggleWindowPortal}>
+        <div>
+          <h4>{`${artist} - ${song}`}</h4>
+          <input type="file" name="video" onChange={(e)=>console.log(e.target.value)}/>
+        </div>
+        <button onClick={this.playSong}>
           {this.state.showWindowPortal ? 'Close the' : 'Open a'} Portal
         </button>
-        
+        <ReactPlayer url={this.state.url}/>
         {this.state.showWindowPortal && (
-          <MediaPlayer closeWindowPortal={this.closeWindowPortal} >
-            <h1>Counter in a portal: {this.state.counter}</h1>
-            <p>Even though I render in a different window, I share state!</p>
-            
-            <button onClick={() => this.closeWindowPortal()} >
-              Close me!
-            </button>
+          <MediaPlayer>
+            <ReactPlayer url={this.state.url}/>
           </MediaPlayer>
         )}
       </div>

@@ -10,6 +10,7 @@
     "react-csv": "^1.1.1",
     "react-dom": "^16.8.1",
     "react-new-window": "0.0.11",
+    "react-player": "^1.9.3",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.5",
     "react-toasts": "^3.0.0"

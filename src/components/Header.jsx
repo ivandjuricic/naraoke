@@ -13,6 +13,7 @@ import Avatar from '@material-ui/core/Avatar';
 import { withRouter, Link } from 'react-router-dom';
 
 
+const backgrounImageUrl = 'https://i.ytimg.com/vi/WC9rHRP-mnQ/maxresdefault.jpg'
 const styles = {
   root: {
     flexGrow: 1,
@@ -27,7 +28,7 @@ const styles = {
 };
 
 const headerStyle = {
-  backgroundImage: "url(https://i.ytimg.com/vi/WC9rHRP-mnQ/maxresdefault.jpg)"
+  backgroundImage: `url(${backgrounImageUrl})`
 }
 
 class Header extends React.Component {
@@ -81,10 +82,10 @@ class Header extends React.Component {
             this.setState({anchorEl: null})
             this.props.history.push('/new')
           }}>Add song</MenuItem>
-          <MenuItem onClick={ () => {
+          {/* <MenuItem onClick={ () => {
             this.setState({anchorEl: null})
             this.props.history.push('/player')
-          }}>Add song</MenuItem>
+          }}>Player</MenuItem> */}
         </React.Fragment>
         ): null}
         <MenuItem onClick= { () => {
