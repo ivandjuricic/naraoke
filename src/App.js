@@ -8,6 +8,7 @@ import Player from './components/Player';
 import Footer from './components/Footer';
 import firebase from './firebase';
 import {ToastsContainer, ToastsStore, ToastsContainerPosition } from 'react-toasts';
+import { images } from './consts';
 
 
 class App extends Component {
@@ -16,15 +17,25 @@ class App extends Component {
     searchResults: null,
     disneyResults: null,
     miscResults: null,
+    randInt: 0
+  }
+
+  componentWillMount() {
+    this.setState({randInt: this.getRndInteger(0, images.length)})
   }
 
   componentDidMount() {
     this.ref = firebase.firestore().collection('Karaoke');
     this.ref.onSnapshot(this.onCollectionUpdate, this.showError);
+    
   }
 
   showError() {
     ToastsStore.error("Database connection error")
+  }
+
+  getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min) ) + min;
   }
 
   onCollectionUpdate = (querySnapshot) => {
@@ -48,7 +59,8 @@ class App extends Component {
         <Header />
         <ToastsContainer store={ToastsStore} position={ToastsContainerPosition.TOP_RIGHT}/>
         <Switch>
-          <Route exact path='/' component={() => <Main 
+          <Route exact path='/' component={() => <Main
+            randInt={this.state.randInt}
             searchTerm={null}
             onCollectionUpdate={this.onCollectionUpdate}
             searchResults={this.state.searchResults}

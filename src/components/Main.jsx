@@ -13,12 +13,8 @@ class Main extends Component {
           disneyResults: this.props.disneyResults,
           miscResults: this.props.miscResults,
           searchTerm: this.props.searchTerm,
-          randomIndex: this.getRndInteger(0, 9)
+          randomIndex: this.props.randInt
       }
-    }
-
-    getRndInteger(min, max) {
-      return Math.floor(Math.random() * (max - min) ) + min;
     }
 
     handleClickButton(event) {
