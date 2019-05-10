@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AlphabetBrowse from './AlphabetBrowse';
 import Search from './Search';
 import RandomImage from './RandomImage';
+import BackToTop from "react-back-to-top-button";
 
 class Main extends Component {
     constructor(props) {
@@ -36,6 +37,13 @@ class Main extends Component {
               </div>
 
               {displayResults}
+              <BackToTop
+                showAt={100}
+                speed={1500}
+                easing="easeInOutQuint"
+              >
+                ⬆️
+              </BackToTop>
             </div>
         );
     }
